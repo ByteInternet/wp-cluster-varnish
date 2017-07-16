@@ -1,0 +1,126 @@
+/**
+ * @author Ferdy Perdaan
+ * @version 1.0
+ *
+ * Styling for the builder page
+ */
+.clearfix {
+  zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+.clearfix:after {
+  clear: both;
+}
+.notice .emp {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #a00;
+}
+.notice ul {
+  list-style: disc;
+}
+.notice ul li {
+  margin-left: 20px;
+}
+body.wp-admin .postbox .hndle > span > .url-count {
+  float: right;
+}
+body.wp-admin .postbox .table-urls .column-statuscode {
+  width: 100px;
+}
+body.wp-admin .postbox .table-urls .column-load-time {
+  width: 100px;
+}
+body.wp-admin .postbox[id^="warmer-object"] .inside {
+  margin: -1px !important;
+  padding: 0px;
+}
+body.wp-admin #submitdiv .action-continue {
+  display: block;
+}
+body.wp-admin #submitdiv .action-pause {
+  display: none;
+}
+body.wp-admin #submitdiv.state-running .action-continue {
+  display: none;
+}
+body.wp-admin #submitdiv.state-running .action-pause {
+  display: block;
+}
+body.wp-admin .slider-container {
+  zoom: 1;
+}
+body.wp-admin .slider-container:before,
+body.wp-admin .slider-container:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+body.wp-admin .slider-container:after {
+  clear: both;
+}
+body.wp-admin .slider-container input {
+  width: 100%;
+  -webkit-appearance: none;
+}
+body.wp-admin .slider-container input[type=range]::-webkit-slider-runnable-track {
+  height: 5px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+body.wp-admin .slider-container input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #0073aa;
+  margin-top: -6px;
+  margin-left: -4px;
+}
+body.wp-admin .slider-container input[type=range]:focus {
+  outline: none;
+}
+body.wp-admin .slider-container input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ccc;
+}
+body.wp-admin .slider-container .slider-range {
+  text-align: center;
+}
+body.wp-admin .slider-container .slider-value {
+  display: inline-block;
+}
+body.wp-admin .slider-container .slider-min {
+  float: left;
+}
+body.wp-admin .slider-container .slider-max {
+  float: right;
+}
+body.wp-admin .table-urls .state-error .column-path {
+  border-color: #a00;
+}
+body.wp-admin .table-urls .state-error .column-error strong {
+  color: #a00;
+}
+body.wp-admin .table-urls .state-no-cache .column-path {
+  border-color: #1e8cbe;
+}
+body.wp-admin .table-urls .state-no-cache .column-error strong {
+  color: #1e8cbe;
+}
+body.wp-admin .table-urls .column-path {
+  border-left: 3px solid transparent;
+}
+body.wp-admin .table-urls .column-response-time {
+  width: 60px;
+}

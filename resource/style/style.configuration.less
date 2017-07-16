@@ -1,0 +1,134 @@
+/**
+ * @author Ferdy Perdaan
+ * @version 1.0
+ *
+ * 
+ */
+
+body.wp-admin
+{
+	
+	tr.suboption 
+	{
+		th { color: gray; }
+		input[type="text"] { height: 28px; }
+		
+		.match-result { padding-top: 5px; }
+	}
+		
+	
+	.hndle .status 
+	{ 
+		float: right; 
+		cursor: pointer; 
+		margin-right: 10px;  
+	
+		input { margin-top: 2px; }
+	}
+	
+	.hndle .state-icon
+	{
+		margin-top: 5px;
+		margin-right: 10px;
+	}
+
+	.code-sample 
+	{ 
+		margin-top: 10px; position: 
+		relative; border: 1px 
+		solid #D1D1D1; 
+		
+		code 
+		{ 
+			width: 100%; 
+			display: none; 
+			margin-left: 0px; 
+			min-height: 50px; 
+			
+			-webkit-box-sizing: border-box;	
+			-moz-box-sizing: border-box; 
+			box-sizing: border-box; 
+			
+			&.active { display: block; }
+			.comment { color: #0073aa; }	
+		}
+	
+		.tab-nav { 
+			position: absolute; 
+			top: 0px; 
+			right: 0px; 
+			
+			padding: 0px; 
+			margin: 0px;
+			list-style: none;  
+			clear: left; 
+			background: #fff; 
+			border-bottom: 1px solid #D1D1D1; 
+		
+			a { text-decoration: none; color: inherit; }
+			li { float: left; padding: 5px 8px; border-left: 1px solid #D1D1D1; margin: 0px; cursor: pointer; }
+			li.active { font-weight: bold; }
+		}
+	}
+	
+	.state-icon
+	{
+		cursor: pointer;
+		position: relative;
+		display: inline-block;
+		width: 12px;
+		height: 12px;
+		margin-left: 6px;
+		border-radius: 50%;
+		background: #888;
+		line-height: 16px;
+	
+		&.debug { background: #1e8cbe; } 
+		&.valid { background: #7ad03a; } 
+		&.invalid { background: #dd3d36; }
+
+		&:hover .popup { display: block; }
+
+		.popup
+		{
+			display: none;
+			position: absolute;
+			top: 5px;
+			left: 20px;
+			
+			z-index: 100;
+		
+			background: #fff;
+			border: 1px solid #e5e5e5;
+			width: 400px;
+			
+			.date { 
+				float: right;
+				font-size: 0.7em;
+			}
+			
+			.title { 
+				background: #e5e5e5; 
+				padding: 5px;
+				color: #222;
+				font-weight:500;
+			}
+			
+			.message { 
+				padding: 5px;
+				min-height: 30px;
+			}
+			
+			.table-meta 
+			{
+				width: 100%;
+				margin-top: 10px;
+				
+				tr {
+					th, td { border-top: 1px solid #e5e5e5; font-size: 0.9em; }
+					th { vertical-align: top; font-weight: normal; padding-left: 0px; }
+				}
+			}
+		}
+	}
+}

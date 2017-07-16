@@ -1,0 +1,132 @@
+/**
+ * @author Ferdy Perdaan
+ * @version 1.0
+ *
+ * 
+ */
+body.wp-admin tr.suboption th {
+  color: gray;
+}
+body.wp-admin tr.suboption input[type="text"] {
+  height: 28px;
+}
+body.wp-admin tr.suboption .match-result {
+  padding-top: 5px;
+}
+body.wp-admin .hndle .status {
+  float: right;
+  cursor: pointer;
+  margin-right: 10px;
+}
+body.wp-admin .hndle .status input {
+  margin-top: 2px;
+}
+body.wp-admin .hndle .state-icon {
+  margin-top: 5px;
+  margin-right: 10px;
+}
+body.wp-admin .code-sample {
+  margin-top: 10px;
+  position: relative;
+  border: 1px 
+		solid #D1D1D1;
+}
+body.wp-admin .code-sample code {
+  width: 100%;
+  display: none;
+  margin-left: 0px;
+  min-height: 50px;
+  box-sizing: border-box;
+}
+body.wp-admin .code-sample code.active {
+  display: block;
+}
+body.wp-admin .code-sample code .comment {
+  color: #0073aa;
+}
+body.wp-admin .code-sample .tab-nav {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  clear: left;
+  background: #fff;
+  border-bottom: 1px solid #D1D1D1;
+}
+body.wp-admin .code-sample .tab-nav a {
+  text-decoration: none;
+  color: inherit;
+}
+body.wp-admin .code-sample .tab-nav li {
+  float: left;
+  padding: 5px 8px;
+  border-left: 1px solid #D1D1D1;
+  margin: 0px;
+  cursor: pointer;
+}
+body.wp-admin .code-sample .tab-nav li.active {
+  font-weight: bold;
+}
+body.wp-admin .state-icon {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: #888;
+  line-height: 16px;
+}
+body.wp-admin .state-icon.debug {
+  background: #1e8cbe;
+}
+body.wp-admin .state-icon.valid {
+  background: #7ad03a;
+}
+body.wp-admin .state-icon.invalid {
+  background: #dd3d36;
+}
+body.wp-admin .state-icon:hover .popup {
+  display: block;
+}
+body.wp-admin .state-icon .popup {
+  display: none;
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  z-index: 100;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  width: 400px;
+}
+body.wp-admin .state-icon .popup .date {
+  float: right;
+  font-size: 0.7em;
+}
+body.wp-admin .state-icon .popup .title {
+  background: #e5e5e5;
+  padding: 5px;
+  color: #222;
+  font-weight: 500;
+}
+body.wp-admin .state-icon .popup .message {
+  padding: 5px;
+  min-height: 30px;
+}
+body.wp-admin .state-icon .popup .table-meta {
+  width: 100%;
+  margin-top: 10px;
+}
+body.wp-admin .state-icon .popup .table-meta tr th,
+body.wp-admin .state-icon .popup .table-meta tr td {
+  border-top: 1px solid #e5e5e5;
+  font-size: 0.9em;
+}
+body.wp-admin .state-icon .popup .table-meta tr th {
+  vertical-align: top;
+  font-weight: normal;
+  padding-left: 0px;
+}
