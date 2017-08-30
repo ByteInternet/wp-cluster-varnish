@@ -31,7 +31,7 @@ abstract class XLII_Cache_Instance extends XLII_Cache_Singleton
 
 			<code class = "htaccess">
 				<div class = "comment">
-				# <?php echo __('Add this code to the bottom of your .htaccess file', 'xlii-cache'); ?><br />
+				# <?php echo __('Add this code to the top of your .htaccess file', 'xlii-cache'); ?><br />
 				# <?php echo __('Location', 'xlii-cache') . ': ' . get_home_path() . '.htaccess'; ?><br /><br />
 				</div>
 				
