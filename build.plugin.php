@@ -1,8 +1,8 @@
 <?php
 /*
- * Plugin Name: Perfomance plugin
+ * Plugin Name: Cluser Varnish
  * Description: Adds a performance boost to your website using varnish or redis.
- * Author: 42functions
+ * Author: 42functions, byte
  * Version: 1.4.4
  * Author URI: http://42functions.nl/
  */
