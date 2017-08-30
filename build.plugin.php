@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Cluser Varnish
  * Description: Adds a performance boost to your website using varnish or redis.
- * Author: 42functions, byte
+ * Author: 42functions, bytebv
  * Version: 1.4.4
  * Author URI: http://42functions.nl/
  */
