@@ -146,6 +146,87 @@ abstract class XLII_Cache_Instance extends XLII_Cache_Singleton
 	abstract protected function _get($key);
 	
 	/**
+	 * Retrieve the cache status
+	 * 
+	 * @return	array
+	 */
+	public function getStatus()
+	{
+		$status = array();
+		
+		// Debug state
+		if(defined('CACHE_DEBUG') && CACHE_DEBUG)
+		{
+			$status['debug'] = array(
+				'state' => 'debug',
+				'label' => __('Debug mode enabled', 'xlii-cache'),
+				'help' => __('Debug mode can force some cache engines in a state that they are running (even though they are not installed). It therefore can be used for debugging and development of the plugin.', 'xlii-cache')
+			);
+		}
+	
+		// Engine state
+		if(($state = $this->isValid()) === true)
+		{
+			$status['engine'] = array(
+				'state' => 'valid',
+				'label' => __('Cache engine detected', 'xlii-cache'),
+				'help'  => __('The cache engine is detected and probabily running propperly', 'xlii-cache')
+			);
+		}
+		else if($state === false)
+		{
+			$status['engine'] = array(
+				'state' => 'invalid',
+				'label' => __('Cache engine missing', 'xlii-cache'),
+				'help'  => __('The cache engine is not detected and the plugin most properly wont work', 'xlii-cache')
+			);
+		}
+		else
+		{
+			$status['engine'] = array(
+				'state' => 'unknown',
+				'label' => __('Unable to determine wether cache engine is enabled', 'xlii-cache'),
+				'help'  => __('We are not quite sure wether the cache engine is availible', 'xlii-cache')
+			);
+		}
+		
+		// Check plugins
+		{
+			$plugins = wp_get_mu_plugins();
+		
+			if(function_exists('wp_get_active_network_plugins'))
+				$plugins = array_merge($plugins, 'wp_get_active_network_plugins');
+			
+			$plugins = array_merge($plugins, wp_get_active_and_valid_plugins());	
+			$self = basename(dirname(dirname(dirname(__FILE__))));
+			$conflict = array();
+		
+			foreach($plugins as $path)
+			{
+				// Take top two levels
+				$path = basename(dirname($path)) . '/' . basename($path);
+			
+				if(strpos($path, $self) === 0)
+					continue;
+			
+				if(strpos($path, 'varnish') !== false || strpos($path, 'redis') !== false || strpos($path, 'cache') !== false)
+					$conflict[] = $path;
+			}
+		
+			if($conflict)
+			{		
+				$status['plugin'] = array(
+					'state' => 'unknown',
+					'label' => __('Possible conflicting plugins found', 'xlii-cache'),
+					'help' => implode('<br />', $conflict)
+				);
+			}
+		}
+		
+		return apply_filters('xlii_cache_status', $status);
+	}
+	
+	/**
 	 * Mutate the key to a generic key.
 	 * 
 	 * @param	string $key The key the cache attribute is referred by.

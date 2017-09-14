@@ -69,6 +69,30 @@ class XLII_Cache_Varnish extends XLII_Cache_Instance
 	}
 	
 	/**
+	 * Retrieve the cache status
+	 * 
+	 * @return	array
+	 */
+	public function getStatus()
+	{
+		$status = parent::getStatus();
+		
+		$ping = wp_remote_request(home_url('/'), array('method' => 'GET', 'sslverify' => false));
+		$ping = !is_wp_error($ping);
+		
+		if(!$ping)
+		{
+			$status['ping'] = array(
+				'state' => 'invalid',
+				'label' => __('The server cannot ping itself', 'xlii-cache'),
+				'help' => __('Purging the cache works trough public urls requested from the server, when the server cannot ping itself the cache is probabily unable to purge itself', 'xlii-lms')
+			);
+		}
+		
+		return $status;
+	}
+	
+	/**
 	 * Return the label the engine is referred by
 	 * 
 	 * @return	string

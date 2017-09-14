@@ -100,8 +100,8 @@ class XLII_Cache_Configuration_General_Metabox extends XLII_Cache_Singleton
 					<label for = "options-additional"><?php _e('Options', 'xlii-cache'); ?></label>
                 </th>
 				<td>
-					<textarea cols = "80" rows = "5" name = "options[additional]" id = "options-additional"><?php echo isset($opt['options']['additional']) ? esc_textarea(implode("\n", $opt['options']['additional'])) : ''; ?></textarea>
-					<p class = "description"><small><?php _e('Flush the entire cache upon changes within the specified options. Please specify one option per line.', 'xlii-cache'); ?></small></p>
+					<textarea cols = "80" rows = "5" name = "options[additional]" id = "options-additional" placeholder = "<?php echo __('For example:', 'lms') . "\n" . 'home_url' . "\n" . 'site_url'; ?> "><?php echo isset($opt['options']['additional']) ? esc_textarea(implode("\n", $opt['options']['additional'])) : ''; ?></textarea>
+					<p class = "description"><small><?php printf(__('Flush the entire cache upon changes within the specified options. Please specify one option per line, this corresponds directly with the option name in the %s database table.', 'xlii-cache'), '<strong>' . $GLOBALS['wpdb']->base_prefix . 'options</strong>'); ?></small></p>
 				</td>
             </tr>
             <tr>
@@ -127,7 +127,7 @@ class XLII_Cache_Configuration_General_Metabox extends XLII_Cache_Singleton
 					<label for = "options-exclude"><?php _e('Exclude', 'xlii-cache'); ?></label>
                 </th>
 				<td>
-					<textarea cols = "80" rows = "5" name = "options[exclude]" id = "options-exclude"><?php echo isset($opt['options']['exclude']) ? esc_textarea(implode("\n", $opt['options']['exclude'])) : ''; ?></textarea>
+					<textarea cols = "80" rows = "5" name = "options[exclude]" id = "options-exclude" placeholder = "<?php echo 'http://www.example.com' . "\n" . 'https://www.example.com/foobar' . "\n" . 'https?://www.example.com/(blog|[0-9]{4})/' ?>"><?php echo isset($opt['options']['exclude']) ? esc_textarea(implode("\n", $opt['options']['exclude'])) : ''; ?></textarea>
 					
 					<p class = "description"><small>
 						<?php _e('Exclude the following pages from being cached. Please specify one URL per line, regular expressions allowed.', 'xlii-cache'); ?><br />
@@ -168,6 +168,9 @@ class XLII_Cache_Configuration_General_Metabox extends XLII_Cache_Singleton
 						<input type = "checkbox" id = "options-revalidate" name = "options[revalidate]"<?php checked(true, !empty($opt['options']['revalidate'])); ?> />
 						<?php _e('The server determines wether a 304 is returned, used to enhance browser caching', 'theme'); ?>
 					</label>
+					<p class = "description"><small>
+						<?php _e('Note that this setting is not always respected, we try to do our best to enforce it though.', 'xlii-cache'); ?>
+					</small></p>
 				</td>
             </tr>
 
@@ -178,8 +181,12 @@ class XLII_Cache_Configuration_General_Metabox extends XLII_Cache_Singleton
 				<td>
 					<label>
 						<input type = "checkbox" id = "options-compress-html" name = "options[compress-html]"<?php checked(true, !empty($opt['options']['compress-html'])); ?> />
-						<?php _e('Try compressing the HTML output', 'theme'); ?>
+						<?php _e('Try compressing the HTML output', 'theme'); ?>.
 					</label>
+					<p class = "description"><small>
+						<?php _e('When possible we try to automaticly compress the page using the `zlib` compression algorithm, by reducing the size of the page it generaly gets a faster loading time.', 'xlii-cache'); ?><br />
+						<?php _e('Note that other plugins or maybe the hosting-server might also attempt compression, this might cause pages to render inproperly', 'xlii-cache'); ?>
+					</small></p>
 				</td>
             </tr>
         </table>

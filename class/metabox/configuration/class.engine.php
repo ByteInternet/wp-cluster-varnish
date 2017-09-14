@@ -20,61 +20,13 @@ class XLII_Cache_Configuration_Engine_Metabox extends XLII_Cache_Singleton
 	}
 	
 	/**
-	 * Retrieve the cache status
-	 * 
-	 * @return	array
-	 */
-	public function getStatus()
-	{
-		if(XLII_Cache::isValid() === true)
-		{
-			$mode = 'valid';
-			$title = __('Success', 'xlii-cache');
-			$message = __('Succesfully connected to the cache instance', 'xlii-cache');
-		}
-		else if(defined('CACHE_DEBUG') && CACHE_DEBUG)
-		{
-			$mode = 'debug';
-			$title = __('Debug', 'xlii-cache');
-			$message = __('Debug mode is enabled', 'xlii-cache');
-		}
-		else if(XLII_Cache::isValid() === false)
-		{
-			$mode = 'invalid';
-			$title = __('Failure', 'xlii-cache');
-			$message = __('The cache instance seems to be disabled, please contact your administrator.', 'xlii-cache');
-		}
-		else
-		{
-			$mode = 'unknown';
-			$title = __('State unknown', 'xlii-cache');
-			$message = __('Unable to determine wether the cache instance is running properly.', 'xlii-cache');
-		}
-		
-		$status = array('mode' => $mode, 'title' => $title, 'message' => $message);
-		$status = apply_filters('xlii_cache_status', $status);
-		
-		return $status;
-	}
-	
-	/**
 	 * Register the metabox
 	 * 
 	 * @access	private
 	 */
 	public function _register()
 	{	
-		$status = $this->getStatus();
-		$title  = '<div class="state-icon ' . $status['mode'] . '">' . 
-			   		'<div class = "popup">' .
-						'<div class = "title">' . $status['title'] . '</div>' .
-						'<div class = "message">' . $status['message'] . '</div>' .
-					'</div>' . 
-			      '</div>';
-			
-		$title .= __('Engine', 'xlii-cache');
-			
-		add_meta_box(self::METABOX_NAME, $title, array($this, 'render'), 'cache-configuration', 'normal');
+		add_meta_box(self::METABOX_NAME, __('Engine', 'xlii-cache'), array($this, 'render'), 'cache-configuration', 'normal');
 	}
 
 	/**

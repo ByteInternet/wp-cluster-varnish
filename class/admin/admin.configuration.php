@@ -22,6 +22,9 @@ class XLII_Cache_Admin_Configuration extends XLII_Cache_Singleton
 		// -- Regsiter admin page
 		add_action('xlii_cache_admin_bar_menu', array($this, '_adminbar'), 20, 2);
 		add_action('admin_menu', array($this, '_adminmenu'), 5);
+		
+		if(is_admin())
+			XLII_Cache_Configuration_Submit_Metabox::init();
 	}
 	
 	
@@ -76,6 +79,12 @@ class XLII_Cache_Admin_Configuration extends XLII_Cache_Singleton
 		{
 			$this->renderResponse();
 
+			if(function_exists('is_multisite') && is_multisite())
+				echo '<div class = "notice notice-warning"><p>' . __('You are currently running a multisite installation. We do not yet officialy support this as the configuration is shared between all sites and plugin options may be stored in a single site, this might cause unwanted behaviour.', 'xlii-cache') . '</p></div>';
+
+			if(defined('ICL_SITEPRESS_VERSION'))
+				echo '<div class = "notice notice-warning"><p>' . __('You are currently running a WPML installation. We do not yet officialy support this, the plugin is known to have issues with multi-domain installations.', 'xlii-cache') . '</p></div>';
+
 			if(function_exists('session_status'))
 				$session = session_status() === PHP_SESSION_ACTIVE;
 			else
@@ -86,6 +95,7 @@ class XLII_Cache_Admin_Configuration extends XLII_Cache_Singleton
 
 			if(XLII_Cache::isValid() === null)
 				echo '<div class = "notice notice-error"><p>' . __('Unable to determine wether the cache instance is running properly.', 'xlii-cache') . '</p></div>';
+			
 			else if(XLII_Cache::isValid() === false)
 				echo '<div class = "notice notice-error"><p>' . __('The cache instance seems to be disabled, please contact your administrator.', 'xlii-cache') . '</p></div>';
 		}
@@ -132,7 +142,6 @@ class XLII_Cache_Admin_Configuration extends XLII_Cache_Singleton
 		XLII_Cache_Configuration_Taxonomy_Metabox::init();
 		XLII_Cache_Configuration_Comments_Metabox::init();
 		XLII_Cache_Configuration_Users_Metabox::init();
-		XLII_Cache_Configuration_Submit_Metabox::init();
 		
 		$this->_adminProcess();
 	

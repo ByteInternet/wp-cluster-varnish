@@ -1,9 +1,9 @@
 <?php
 /*
- * Plugin Name: Cluser Varnish
+ * Plugin Name: Cluster Varnish
  * Description: Adds a performance boost to your website using varnish or redis.
  * Author: 42functions, bytebv
- * Version: 1.4.4
+ * Version: 1.4.5
  * Author URI: http://42functions.nl/
  */
 

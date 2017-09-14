@@ -1,8 +1,8 @@
 === Varnish Cache ===
 Contributors: 42functions, Byte
 Tags: varnish, cache, redis
-Tested up to: 4.8.0
-Stable tag: 1.4.4
+Tested up to: 4.8.1
+Stable tag: 1.4.5
 
 Varnish cache is a powerful extension which acts as a communication layer between Varnish and WordPress.
 
@@ -32,6 +32,16 @@ The following functionality is currently in the pipeline
 
 
 == Changelog ==
+
+= 1.4.5 = 
+
+* Added: Varnish ping check for current domain
+* Added: Conflict check for other caching plugins
+* Added: Sample option values
+* Added: WMPL warning
+* Enabled: WPML experimental module
+* Added: Multisite warning
+* Fixed: WPML experimental module rendering hooks
 
 = 1.4.4 =
 
@@ -66,6 +76,7 @@ The following functionality is currently in the pipeline
 * Modified: Added preq_quote to specified regex
 * Fixed: Status header check upon redirect
 * Added: Vary: Cookie header to prevent browser cache (varnish)
+* Removed: Removed 'cache_form_display' action, new metabox setup replaced hook existance
 
 = 1.3.2 =
 

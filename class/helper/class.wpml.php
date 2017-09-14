@@ -8,6 +8,8 @@
 
 class XLII_Cache_WPML_Helper extends XLII_Cache_Singleton
 {
+	const METABOX_NAME = 'metabox-wpml';
+	
 	/**
 	 * Setup the default helper object
 	 */
@@ -16,7 +18,7 @@ class XLII_Cache_WPML_Helper extends XLII_Cache_Singleton
 		if(!defined('ICL_SITEPRESS_VERSION') || !version_compare(ICL_SITEPRESS_VERSION, '3.1.8.4', '>='))
 			return;
 		
-		add_action('cache_form_display', array($this, '_adminDisplay'));
+		add_action('add_cache_meta_boxes', array($this, '_adminRegister'), 20);
 		add_filter('cache_form_process', array($this, '_adminProcess'));
 		
 		if(!XLII_Cache_Manager::option('wpml.enabled'))
@@ -31,27 +33,32 @@ class XLII_Cache_WPML_Helper extends XLII_Cache_Singleton
 	}
 	
 	/**
+	 * Register our metabox
+	 * 
+	 * @access	private
+	 */
+	public function _adminRegister()
+	{
+		$title  = __('WPML', 'xlii-cache');
+		$title .= '<span class = "status"><input type = "checkbox" name = "wpml[enabled]" id = "wpml-enable" value = "1" ' . checked(true, XLII_Cache_Manager::option('wpml.enabled'), false) . ' />' .
+					'<label for = "wpml-enable"></label>' .
+				  '</span>';
+					
+		add_meta_box(self::METABOX_NAME, $title, array($this, '_adminDisplay'), 'cache-configuration', 'normal');
+	}
+	
+	/**
 	 * Append a new display section in the form
 	 * 
 	 * @access	private
-	 * @param	object $view Contextual view object used to render the page
+	 * @param	array $opt An array containing the configuration options
 	 */ 
 	public function _adminDisplay($view)
-	{
-		
-			$title  = __('WPML', 'xlii-cache');
-			$title .= '<span class = "status"><input type = "checkbox" name = "wpml[enabled]" id = "wpml-enable" value = "1" ' . checked(true, XLII_Cache_Manager::option('wpml.enabled'), false) . ' />' .
-						'<label for = "wpml-enable"></label>' .
-					  '</span>';
-	
-			echo $view->metaboxHeader($title) .
-			
-				 '<p>' . __('WPML support is still in an experimental phase, the module is only tested on a customized WPML installation. ' . 
-						 	'We advise to only activate this module if you experience issues regarding the cache and WPML.', 'xlii-cache') . 
-				 '</p>' .
-				
-				$view->metaboxFooter();
-		
+	{	
+		echo '<p>' . 
+				__('WPML support is still in an experimental phase, the module is only tested on a customized WPML installation. ' . 
+				   'Activating this module is at your own risk, we advise to only enable this when you expirience issues with caching and your active WPML installation.', 'xlii-cache') . 
+			 '</p>';
 	}
 	
 	/**
