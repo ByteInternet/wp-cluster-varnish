@@ -91,7 +91,7 @@ class XLII_Cache_Admin_Configuration extends XLII_Cache_Singleton
 				$session = session_id();
 
 			if($session)
-				echo '<div class = "notice notice-error"><p>' . __('We detected a PHP session running on your enviorment. Please note that sessions cause no-cache headers to be send thus making Varnish obsolete.', 'xlii-cache') . '</p></div>';
+				echo '<div class = "notice notice-error"><p>' . __('We detected a PHP session running on your environment. Please note that sessions cause no-cache headers to be send thus making Varnish obsolete.', 'xlii-cache') . '</p></div>';
 
 			if(XLII_Cache::isValid() === null)
 				echo '<div class = "notice notice-error"><p>' . __('Unable to determine wether the cache instance is running properly.', 'xlii-cache') . '</p></div>';
